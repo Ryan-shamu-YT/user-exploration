@@ -54,10 +54,6 @@ def getinfo(argument1):
     user = scratch3.get_user(argument1)
     user.update()
 
-    image_url = user.icon_url
-    response = requests.get(image_url)
-    image = Image.open(BytesIO(response.content))
-
     return_data = []
     return_data.append(f"Followers: {user.follower_count()}")
     return_data.append(f"About Me:\n{user.about_me}")
