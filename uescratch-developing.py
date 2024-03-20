@@ -25,8 +25,10 @@ def rgb_to_hex(rgb):
     
     return hex_color
 
-def generatePfp(user,resolution):
-    userVar = scratch3.get_user(user)
+def generatePfp(usertopfp,resolution):
+    print(f"Generating pfp for user {usertopfp} with resolution {resolution}")
+    userVar = scratch3.get_user(usertopfp)
+    userVar.update()
     req = requests.get(userVar.icon_url).content
     req = BytesIO(req)
     Img = Image.open(req)
@@ -62,6 +64,12 @@ def getinfo(argument1):
     return_data.append(user.message_count())
 
     return return_data
+
+@client.request
+def getpfp(argument1, argument2):
+    print(f"PFP requested for user {argument1} and resolution {argument2}")
+    
+    return generatePfp(argument1, argument2)
 
 
 @client.event
