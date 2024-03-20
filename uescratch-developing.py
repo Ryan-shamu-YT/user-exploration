@@ -33,7 +33,7 @@ def generatePfp(usertopfp,resolution):
     req = BytesIO(req)
     Img = Image.open(req)
     Img = Img.convert("RGB")
-    Img = Img.resize((resolution,resolution))
+    Img = Img.resize((int(resolution),int(resolution)))
     pixelList = []
     for pixelX in range(Img.width):
         for pixelY in range(Img.height):
