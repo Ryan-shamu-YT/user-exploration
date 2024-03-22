@@ -11,7 +11,7 @@ from io import BytesIO
 session = scratch3.login("just_devs", os.getenv("JD_PASS"))
 conn = session.connect_cloud("982808852") 
 
-servv = "2.0 INDEV"
+servv = "2.0"
 
 client = scratch3.CloudRequests(conn)
 
@@ -32,6 +32,7 @@ def generatePfp(usertopfp,resolution):
     req = requests.get(userVar.icon_url).content
     req = BytesIO(req)
     Img = Image.open(req)
+    Img = Img.rotate(90)
     Img = Img.convert("RGB")
     Img = Img.resize((int(resolution),int(resolution)))
     pixelList = []
